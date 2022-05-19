@@ -1,10 +1,13 @@
 {
   "name": "search-teams",
+  "homepage": "https://yuryavdeev.github.io/search-teams",
   "version": "0.1.0",
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build"
+    "build": "vue-cli-service build",
+    "deploy": "gh-pages -d dist",
+    "predeploy": "npm run build"
   },
   "dependencies": {
     "core-js": "^3.6.5",
@@ -17,6 +20,7 @@
     "@vue/cli-plugin-router": "~4.5.15",
     "@vue/cli-plugin-vuex": "~4.5.15",
     "@vue/cli-service": "~4.5.15",
+    "gh-pages": "^4.0.0",
     "node-sass": "^4.12.0",
     "sass-loader": "^8.0.2",
     "vue-template-compiler": "^2.6.11"
