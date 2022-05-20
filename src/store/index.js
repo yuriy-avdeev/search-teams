@@ -4,12 +4,41 @@ import Vuex from 'vuex'
 Vue.use(Vuex)
 
 export default new Vuex.Store({
-  state: {
+  state() {
+    return {
+      user: {
+        name: 'RichyRich'
+      },
+
+      messages: ['first', 'second'],
+
+      isLaptopScreen: true,
+    }
   },
+
+
   mutations: {
+    handleChangingScreen(state, isUsedLaptop) {
+      state.isLaptopScreen = isUsedLaptop
+    }
   },
+
+
   actions: {
   },
-  modules: {
+
+
+  getters: {
+    userData(state) {
+      return state.user
+    },
+
+    messagesNumber(state) {
+      return state.messages.length
+    },
+
+    isLaptopScreen(state) {
+      return state.isLaptopScreen
+    },
   }
 })

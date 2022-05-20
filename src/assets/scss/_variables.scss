@@ -1,2 +1,54 @@
+@import '~@fontsource/roboto/400.css'; // regular
+@import '~@fontsource/roboto/500.css'; // medium
+@import '~@fontsource/roboto/700.css'; // bold
+@import '~@fontsource/montserrat/400.css';
+@import '~@fontsource/montserrat/600.css'; // semibold
+@import '~@fontsource/montserrat/700.css';
+
+
+$fullWidth: 100%;
+$maxWidth: 1280px;
 $white: #fff;
 $blue: #00b1ff;
+$backgroundColorMain: #f5f7f9;
+$backgroundColorHeader: #1E3554;
+
+
+
+@mixin hover($opacity, $delay) {
+  opacity: $opacity;
+  transition: opacity linear $delay;
+}
+
+@mixin fontProperty($family, $size, $weight, $height, $style) {
+  font-family: $family;
+  font-size: $size;
+  font-weight: $weight;
+  line-height: $height;
+  font-style: $style;
+}
+
+%fontRobotoRegular {
+  font-family: 'Roboto';
+  font-weight: 400;
+}
+
+// %fontRobotoMedium {
+//   font-family: 'Roboto';
+//   font-weight: 500;
+// }
+
+// %fontRobotoBold {
+//   font-family: 'Roboto';
+//   font-weight: 700;
+// }
+
+// %fontMontserratRegular {
+//   font-family: 'Montserrat';
+//   font-weight: 400;
+// }
+
+// %fontMontserratBold {
+//   font-family: 'Montserrat';
+//   font-weight: 700;
+// }

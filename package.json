@@ -10,6 +10,8 @@
     "predeploy": "npm run build"
   },
   "dependencies": {
+    "@fontsource/montserrat": "^4.5.10",
+    "@fontsource/roboto": "^4.5.7",
     "core-js": "^3.6.5",
     "vue": "^2.6.11",
     "vue-router": "^3.2.0",

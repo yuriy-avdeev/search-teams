@@ -2,7 +2,7 @@
   <div class="not-found">
     <h1 class="not-found__title">404</h1>
     <p class="not-found__text">Page not found...</p>
-    <router-link class="not-found__link" to="/"> to main </router-link>
+    <router-link class="not-found__link" :to="{name: 'my-teams'}"> to main </router-link>
   </div>
 </template>
 

@@ -8,10 +8,20 @@ Vue.use(VueRouter)
 const routes = [
   {
     path: '/',
+    redirect: { name: 'my-teams' } // <- deploy Github => correspond on localhpst:8080
+  },
+  {
+    path: '/search-teams/',
+    redirect: { name: 'my-teams' } // <- deploy Github
+  },
+  {
+    path: '/search-teams/my-teams',
+    name: 'my-teams',
     component: MyTeams
   },
   {
-    path: '/about',
+    path: '/search-teams/about',
+    name: 'about',
     component: () => import('@/pages/About.vue')
   },
   {
@@ -19,6 +29,8 @@ const routes = [
     component: NotFound
   }
 ]
+
+
 
 const router = new VueRouter({
   mode: "history",
