@@ -1,9 +1,13 @@
 <template>
   <div class="my-teams">
-    <h1>MY TEAMS</h1>
+    <Main />
   </div>
 </template>
 
 <script>
-  export default {}
+  import Main from '@/components/Main.vue'
+
+  export default {
+    components: { Main },
+  }
 </script>

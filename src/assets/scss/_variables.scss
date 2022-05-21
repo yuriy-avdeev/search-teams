@@ -8,10 +8,17 @@
 
 $fullWidth: 100%;
 $maxWidth: 1280px;
+$mainMaxWidth: 600px;
+$transitionPoint: 1024px;
 $white: #fff;
 $blue: #00b1ff;
-$backgroundColorMain: #f5f7f9;
-$backgroundColorHeader: #1E3554;
+$fontGrey: #6F8CAA;
+$fontTitle: #1A3150;
+$backgroundColorBody: #f5f7f9;
+$backgroundColorHeader: #1E3554; 
+$backgroundColorInfo: #112948; 
+$backgroundColorMain: #E1E7ED;
+
 
 
 
@@ -32,23 +39,3 @@ $backgroundColorHeader: #1E3554;
   font-family: 'Roboto';
   font-weight: 400;
 }
-
-// %fontRobotoMedium {
-//   font-family: 'Roboto';
-//   font-weight: 500;
-// }
-
-// %fontRobotoBold {
-//   font-family: 'Roboto';
-//   font-weight: 700;
-// }
-
-// %fontMontserratRegular {
-//   font-family: 'Montserrat';
-//   font-weight: 400;
-// }
-
-// %fontMontserratBold {
-//   font-family: 'Montserrat';
-//   font-weight: 700;
-// }

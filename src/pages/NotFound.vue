@@ -2,7 +2,7 @@
   <div class="not-found">
     <h1 class="not-found__title">404</h1>
     <p class="not-found__text">Page not found...</p>
-    <router-link class="not-found__link" :to="{name: 'my-teams'}"> to main </router-link>
+    <router-link class="not-found__link" :to="{ name: 'my-teams' }"> to main </router-link>
   </div>
 </template>
 
@@ -11,11 +11,10 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 90%;
+    width: calc($fullWidth * 0.9);
     max-width: 600px;
     margin: auto;
-    font-size: 24px;
-    line-height: 1.2;
+    @include fontProperty(_, 24px, 600, 1, _);
     color: darkred;
 
     &__title {
@@ -29,10 +28,10 @@
     &__link {
       text-decoration: none;
       font-style: italic;
-      color: blueviolet;
+      color: $blue;
 
       &:hover {
-        opacity: 0.8;
+        @include hover(0.8, 0.3s);
       }
     }
   }

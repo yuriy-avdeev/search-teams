@@ -9,7 +9,7 @@
       />
       <img @click="toMainPage" class="header__logo" :src="isLaptopScreen ? fullLogo : iconLogo" alt="Oddspedia Logo" />
     </div>
-    <UserName v-if="!isLaptopScreen" />
+    <ui-user-name v-if="!isLaptopScreen">{{ userData.name }}</ui-user-name>
     <div class="header__notes-box">
       <img class="header__notes-bell" src="@/assets/images/notification.svg" alt="Notification bell" />
       <div class="header__notes-label">
@@ -20,13 +20,13 @@
 </template>
 
 <script>
-  import UserName from '@/components/UserName'
+  import UiUserName from '@/components/UI/UiUserName'
   import iconLogo from '@/assets/images/logo.svg'
   import fullLogo from '@/assets/images/fullLogo.svg'
   import { mapGetters } from 'vuex'
 
   export default {
-    components: { UserName },
+    components: { UiUserName },
 
     data() {
       return {
@@ -42,7 +42,7 @@
     },
 
     computed: {
-      ...mapGetters(['isLaptopScreen']),
+      ...mapGetters(['isLaptopScreen', 'userData' ]),
     },
   }
 </script>
@@ -61,23 +61,25 @@
       padding-top: 3px;
       margin-right: 10px;
       cursor: pointer;
-
       &:hover {
         @include hover(0.8, 0.3s);
       }
     }
 
     &__logo {
+      cursor: pointer;
       &:hover {
         @include hover(0.8, 0.3s);
-        cursor: pointer;
       }
     }
 
     &__notes-box {
       position: relative;
-      width: 20px;
+      width: 42px;
       height: 20px;
+      cursor: pointer;
+      display: flex;
+      justify-content: flex-end;
     }
 
     &__notes-label {
@@ -102,9 +104,9 @@
     }
   }
 
-  @media screen and (min-width: 768px) {
+  @media screen and (min-width: $transitionPoint) {
     .header {
-      height: calc(100vw - 713px);
+      height: calc(100vw - 969px);
       max-height: 80px;
       padding: 0 32px 0 25px;
 
