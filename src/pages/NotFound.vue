@@ -11,7 +11,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: calc($fullWidth * 0.9);
+    width: 90%;
     max-width: 600px;
     margin: auto;
     @include fontProperty(_, 24px, 600, 1, _);

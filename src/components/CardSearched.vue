@@ -1,6 +1,6 @@
 <template>
-  <div class="card">
-    <div class="card__box-logo">
+  <div class="card" :class="{ card_active: card.is_following }">
+    <div class="card__box-logo" :class="{ 'card__box-logo_active': card.is_following }">
       <img class="card__logo" :src="defaultTeamLogo" alt="Team's logo" />
     </div>
 
@@ -46,7 +46,7 @@
         this.fetchPatchCard(updatedCard)
       },
 
-      ...mapActions('apiModule', ['fetchPatchCard']),
+      ...mapActions({ fetchPatchCard: 'apiModule/fetchPatchCard' }),
     },
   }
 </script>
@@ -54,11 +54,14 @@
 <style lang="scss" scoped>
   .card {
     width: $fullWidth;
-    padding: 6px 15px;
+    padding: 5px 15px;
     color: $fontGrey;
     background-color: $white;
     display: flex;
     align-items: center;
+    &_active {
+      background-color: $backgroundColorBody;
+    }
 
     &__box-logo {
       width: 40px;
@@ -70,6 +73,9 @@
       display: flex;
       align-items: center;
       justify-content: center;
+      &_active {
+        background-color: $white;
+      }
     }
 
     &__logo {

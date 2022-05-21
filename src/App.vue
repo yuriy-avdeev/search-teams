@@ -60,5 +60,6 @@
     min-height: 100vh;
     margin: 0 auto;
     color: $white;
+    padding-bottom: 40px;
   }
 </style>

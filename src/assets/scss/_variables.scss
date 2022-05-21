@@ -20,8 +20,6 @@ $backgroundColorInfo: #112948;
 $backgroundColorMain: #E1E7ED;
 
 
-
-
 @mixin hover($opacity, $delay) {
   opacity: $opacity;
   transition: opacity linear $delay;

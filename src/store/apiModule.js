@@ -16,12 +16,19 @@ export default {
     },
 
     setTeamsList(state, list) {
+      list.sort((a, b) => {
+        return a.name > b.name
+          ? 1
+          : a.name < b.name
+            ? -1
+            : 0
+      })
       state.teamsList = list
     },
 
-    handleSubscription(state, card) {
-      const idx = state.teamsList.findIndex(item => item.id === card.id)
-      state.teamsList.splice(idx, 1, card)
+    handleSubscription(state, updatedCard) {
+      const idx = state.teamsList.findIndex(i => i.id === updatedCard.id)
+      state.teamsList.splice(idx, 1, updatedCard)
     },
   },
 
@@ -39,16 +46,15 @@ export default {
       }
     },
 
-    async fetchPatchCard({ commit }, card) {
+    async fetchPatchCard({ commit }, updatedCard) {
       try {
         commit('setLoading', true)
         // const res = await axios.patch...
-        // dispatch ... - update main list? <- it depends on "res"
-
+        // dispatch ... -> update main list <- it depends on "res"
         // mock ->
         setTimeout(() => {
-          commit('handleSubscription', card)
-        }, 750)
+          commit('handleSubscription', updatedCard)
+        }, 500)
       } catch (e) {
         console.log(e)
       } finally {
@@ -60,6 +66,9 @@ export default {
 
   getters: {
     teamsList: (state) => state.teamsList,
+    myTeamsList: (getters) => {
+      return getters.teamsList.filter(team => team.is_following)
+    },
     isLoading: (state) => state.isPostsLoading,
   }
 }

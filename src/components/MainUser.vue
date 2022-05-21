@@ -26,7 +26,7 @@
     padding: 39px 0 30px;
     background-color: $backgroundColorInfo;
     border-top: solid 1px #585858;
-    border-bottom: solid 1px #585858;
+    border-bottom: solid 1px #3d3d3d;
     display: flex;
     justify-content: center;
 
