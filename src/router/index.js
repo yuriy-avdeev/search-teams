@@ -8,7 +8,7 @@ Vue.use(VueRouter)
 const routes = [
   {
     path: '/',
-    redirect: { name: 'my-teams' } // <- deploy Github => correspond on localhpst:8080
+    redirect: { name: 'my-teams' } // <- deploy Github => correspond on localhost:8080
   },
   {
     path: '/search-teams/',

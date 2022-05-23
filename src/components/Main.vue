@@ -1,9 +1,9 @@
 <template>
   <div class="main">
     <MainUser />
+    <!-- <p v-if="teamsFoundList.length">{{teamsFoundList[0]}}</p> -->
     <NavBar />
-    <MainSearch />
-    <!-- <CardSearched v-for="card in teamsList" :key="card.id" :card="card" /> -->
+    <MainSearch :teamsList="teamsList" />
     <MainMyTeams />
   </div>
 </template>
@@ -13,11 +13,10 @@
   import NavBar from '@/components/NavBar.vue'
   import MainSearch from '@/components/MainSearch.vue'
   import MainMyTeams from '@/components/MainMyTeams.vue'
-  import CardSearched from '@/components/CardSearched.vue'
   import { mapActions, mapGetters } from 'vuex'
 
   export default {
-    components: { MainUser, NavBar, MainSearch, CardSearched, MainMyTeams },
+    components: { MainUser, NavBar, MainSearch, MainMyTeams },
 
     mounted() {
       !this.teamsList.length && this.fetchTeamsList()

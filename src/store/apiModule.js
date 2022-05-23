@@ -23,11 +23,11 @@ export default {
             ? -1
             : 0
       })
-      state.teamsList = list
+      state.teamsList = [...list]
     },
 
     handleSubscription(state, updatedCard) {
-      const idx = state.teamsList.findIndex(i => i.id === updatedCard.id)
+      const idx = state.teamsList.findIndex(c => c.id === updatedCard.id)
       state.teamsList.splice(idx, 1, updatedCard)
     },
   },
@@ -36,7 +36,7 @@ export default {
   actions: {
     async fetchTeamsList({ state, commit }) {
       try {
-        commit('setLoading', true)
+        commit('setLoading', true) // <- todo: add handler when "isLoading"
         const res = await axios.get(`https://run.mocky.io/v3/${state.token}`)
         commit('setTeamsList', res.data)
       } catch (e) {
@@ -46,15 +46,19 @@ export default {
       }
     },
 
-    async fetchPatchCard({ commit }, updatedCard) {
+    async updateCard({ commit }, updatedCard) {
       try {
         commit('setLoading', true)
-        // const res = await axios.patch...
-        // dispatch ... -> update main list <- it depends on "res"
+        // const res = await axios.put...
+        // dispatch...-> update main list <- depends on "res" -> commit('handleSubscription', res.card, { root: true })
         // mock ->
-        setTimeout(() => {
-          commit('handleSubscription', updatedCard)
-        }, 500)
+        return new Promise((resolve, reject) => {
+          setTimeout(() => {
+            // commit('handleSubscription', updatedCard, { root: true }) // update list for render
+            commit('handleSubscription', updatedCard) // update main list
+            resolve('success')
+          }, 500)
+        })
       } catch (e) {
         console.log(e)
       } finally {

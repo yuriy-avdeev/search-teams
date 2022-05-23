@@ -8,6 +8,8 @@
 
 <script>
   export default {
+    emits: ['clickButton'],
+    
     props: {
       isActive: Boolean,
       text: {
@@ -34,6 +36,7 @@
     padding: 0 20px;
     @include fontProperty('Roboto', 12px, 500, 1.5, _);
     background-color: $blue;
+    outline: none;
     border: 2px solid $blue;
     border-radius: 20px;
     color: $white;

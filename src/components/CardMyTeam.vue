@@ -30,7 +30,8 @@
     background-color: $white;
     display: flex;
     align-items: center;
-    &_active {
+    &:hover {
+      cursor: pointer;
       background-color: $backgroundColorBody;
     }
 
@@ -44,9 +45,6 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      &_active {
-        background-color: $white;
-      }
     }
 
     &__logo {

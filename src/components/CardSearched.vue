@@ -1,6 +1,6 @@
 <template>
-  <div class="card" :class="{ card_active: card.is_following }">
-    <div class="card__box-logo" :class="{ 'card__box-logo_active': card.is_following }">
+  <div class="card" :class="{ card_active: isFocus }" @mouseover="$emit('mouseOver')" @mouseleave="$emit('mouseLeave')">
+    <div class="card__box-logo" :class="{ 'card__box-logo_active': isFocus }">
       <img class="card__logo" :src="defaultTeamLogo" alt="Team's logo" />
     </div>
 
@@ -10,7 +10,6 @@
           {{ league }}{{ card.leagues.length !== idx + 1 ? ', ' : '' }}&nbsp;
         </p>
       </div>
-
       <div class="card__box-team">
         <h3 class="card__team-name">{{ card.name }}</h3>
         <div class="card__team-border"></div>
@@ -20,6 +19,7 @@
         </div>
       </div>
     </div>
+
     <UiButton @clickButton="clickButton" :isActive="card.is_following" text="FOLLOW" isActiveText="FOLLOWING" />
   </div>
 </template>
@@ -30,23 +30,38 @@
   import { mapActions } from 'vuex'
 
   export default {
+    emits: ['updateFollowing'],
+
     components: { UiButton },
+
     props: {
       card: Object,
+      index: Number,
+      focusNumber: Number,
     },
+
     data() {
-      return {
-        defaultTeamLogo,
-      }
+      return { defaultTeamLogo }
     },
 
     methods: {
-      clickButton() {
+      async clickButton() {
         const updatedCard = { ...this.card, is_following: !this.card.is_following }
-        this.fetchPatchCard(updatedCard)
+        try {
+          await this.updateCard(updatedCard)
+          this.$emit('updateFollowing', this.card)
+        } catch (e) {
+          console.log(e)
+        }
       },
 
-      ...mapActions({ fetchPatchCard: 'apiModule/fetchPatchCard' }),
+      ...mapActions({ updateCard: 'apiModule/updateCard' }),
+    },
+
+    computed: {
+      isFocus() {
+        return this.focusNumber === this.index
+      },
     },
   }
 </script>
@@ -61,6 +76,7 @@
     align-items: center;
     &_active {
       background-color: $backgroundColorBody;
+      cursor: pointer;
     }
 
     &__box-logo {
