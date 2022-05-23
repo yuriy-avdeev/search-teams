@@ -13,9 +13,10 @@
       v-for="(card, idx) in filteredList"
       :key="card.id"
       :card="card"
-      :index="idx"
       :ref="`card${card.id}`"
+      :index="idx"
       :focusNumber="focusNumber"
+      :inputValue="inputValue"
       @updateFollowing="updateFollowingCard"
       @mouseOver="focusNumber = idx"
       @mouseLeave="focusNumber = focusNumber"
@@ -75,17 +76,10 @@
         if (inputValue.length) {
           this.teamsList.forEach((card) => {
             let checkedName = this.checkForMatches(card.name, inputValue)
-            if (checkedName > -1) card.name = card.name.toUpperCase()
-
             let checkedStadium = this.checkForMatches(card.stadium, inputValue)
-            if (checkedStadium > -1) card.stadium = card.stadium.toUpperCase()
-
             let hasStadium = false
-            card.leagues.forEach((league, idx) => {
-              if (this.checkForMatches(league, inputValue) > -1) {
-                card.leagues[idx] = card.leagues[idx].toUpperCase()
-                hasStadium = true
-              }
+            card.leagues.forEach(league => {
+              if (this.checkForMatches(league, inputValue) > -1) hasStadium = true
             })
 
             if (checkedName > -1 || checkedStadium > -1 || hasStadium) this.filteredList.push(card)

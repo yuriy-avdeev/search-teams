@@ -7,19 +7,23 @@
     <div class="card__box-info">
       <div class="card__box-leagues">
         <p v-for="(league, idx) in card.leagues" :key="league" class="card__team-leagues">
-          {{ league }}{{ card.leagues.length !== idx + 1 ? ', ' : '' }}&nbsp;
+          <UiText :text="league" :inputValue="inputValue" />
+          {{ card.leagues.length !== idx + 1 ? ', ' : '' }}&nbsp;
         </p>
       </div>
       <div class="card__box-team">
-        <h3 class="card__team-name">{{ card.name }}</h3>
+        <h3 class="card__team-name">
+          <UiText :text="card.name" :inputValue="inputValue" />
+        </h3>
         <div class="card__team-border"></div>
         <div class="card__box-stadium">
           <img class="card__logo-stadium" src="@/assets/images/stadium.svg" alt="Image of stadium" />
-          <p class="card__team-stadium">{{ card.stadium }}</p>
+          <p class="card__team-stadium">
+            <UiText :text="card.stadium" :inputValue="inputValue" />
+          </p>
         </div>
       </div>
     </div>
-
     <UiButton @clickButton="clickButton" :isActive="card.is_following" text="FOLLOW" isActiveText="FOLLOWING" />
   </div>
 </template>
@@ -27,17 +31,17 @@
 <script>
   import defaultTeamLogo from '../assets/images/team-placeholder.png'
   import UiButton from '@/components/UI/UiButton.vue'
+  import UiText from '@/components/UI/UiText.vue'
   import { mapActions } from 'vuex'
 
   export default {
     emits: ['updateFollowing'],
-
-    components: { UiButton },
-
+    components: { UiButton, UiText },
     props: {
       card: Object,
       index: Number,
       focusNumber: Number,
+      inputValue: String,
     },
 
     data() {
