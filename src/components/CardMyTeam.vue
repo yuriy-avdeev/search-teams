@@ -1,23 +1,16 @@
 <template>
-  <div class="card">
+  <div class="card" @click="$router.push(`/search-teams/team/${card.id}`)">
     <div class="card__box-logo">
-      <img class="card__logo" :src="defaultTeamLogo" alt="Team's logo" />
+      <img class="card__logo" src="@/assets/images/team-placeholder.png" alt="Team's logo" />
     </div>
     <h3 class="card__team-name">{{ card.name }}</h3>
   </div>
 </template>
 
 <script>
-  import defaultTeamLogo from '../assets/images/team-placeholder.png'
-
   export default {
     props: {
       card: Object,
-    },
-    data() {
-      return {
-        defaultTeamLogo,
-      }
     },
   }
 </script>

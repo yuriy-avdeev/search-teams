@@ -2,7 +2,7 @@
   <div class="search">
     <h2 class="search__title">SEARCH TEAMS</h2>
 
-    <ui-input
+    <UiInput
       @input="searchQuery"
       @handleFocus="handleFocus"
       placeholder="Search for a team"
@@ -13,7 +13,6 @@
       v-for="(card, idx) in filteredList"
       :key="card.id"
       :card="card"
-      :ref="`card${card.id}`"
       :index="idx"
       :focusNumber="focusNumber"
       :inputValue="inputValue"
@@ -21,6 +20,7 @@
       @mouseOver="focusNumber = idx"
       @mouseLeave="focusNumber = focusNumber"
     />
+    <!-- // :ref="`card${card.id}`" => $refs[`card${card.id}`] // m.b. for focus -->
 
     <div v-if="inputValue && !filteredList.length" class="search__no-results-box">
       <img class="search__no-results-image" src="@/assets/images/no-results.svg" alt="No results" />
@@ -59,7 +59,6 @@
       },
 
       updateFollowingCard(card) {
-        // console.log(this.$refs[`card${card.id}`]) // m.b. for focus
         const idx = this.filteredList.findIndex((c) => c.id === card.id)
         this.filteredList[idx].is_following = !this.filteredList[idx].is_following
       },
@@ -75,10 +74,11 @@
 
         if (inputValue.length) {
           this.teamsList.forEach((card) => {
+            // todo: try to combine logic with UiText (computed) <- ... here toLowerCase()
             let checkedName = this.checkForMatches(card.name, inputValue)
             let checkedStadium = this.checkForMatches(card.stadium, inputValue)
             let hasStadium = false
-            card.leagues.forEach(league => {
+            card.leagues.forEach((league) => {
               if (this.checkForMatches(league, inputValue) > -1) hasStadium = true
             })
 

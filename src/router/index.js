@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import MyTeams from '@/pages/MyTeams'
+import Team from '@/pages/Team'
 import NotFound from '@/pages/NotFound'
 
 Vue.use(VueRouter)
@@ -20,6 +21,11 @@ const routes = [
     component: MyTeams
   },
   {
+    path: '/search-teams/team/:id',
+    component: Team,
+    props: true // easy access to :id
+  },
+  {
     path: '/search-teams/about',
     name: 'about',
     component: () => import('@/pages/About.vue')
@@ -29,8 +35,6 @@ const routes = [
     component: NotFound
   }
 ]
-
-
 
 const router = new VueRouter({
   mode: "history",

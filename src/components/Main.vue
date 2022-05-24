@@ -1,7 +1,6 @@
 <template>
   <div class="main">
     <MainUser />
-    <!-- <p v-if="teamsFoundList.length">{{teamsFoundList[0]}}</p> -->
     <NavBar />
     <MainSearch :teamsList="teamsList" />
     <MainMyTeams />
@@ -35,7 +34,6 @@
 <style lang="scss" scoped>
   .main {
     width: $fullWidth;
-
     max-width: $mainMaxWidth;
     margin: auto;
     background-color: $backgroundColorMain;

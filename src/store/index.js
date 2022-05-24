@@ -11,7 +11,7 @@ export default new Vuex.Store({
   state: () => ({
     messages: ['first', 'second'],
     isLaptopScreen: true,
-    // teamsFoundList: [], // <- moved the logic to MainSearch.vue
+    // teamsFoundList: [], // <- the logic moved to MainSearch
 
     linkList: [
       {

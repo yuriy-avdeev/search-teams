@@ -11,7 +11,7 @@
 
   @media screen and (min-width: $transitionPoint) {
     .user-name {
-      @include fontProperty('Montserrat', 16px, 700, 1.2, italic);
+      font-size: 16px;
       margin: 23px 0 0 20px;
     }
   }

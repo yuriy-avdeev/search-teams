@@ -1,6 +1,6 @@
 <template>
   <div>
-    <button @click.prevent="clickButton" class="button" :class="{ button_active: isActive }">
+    <button @click.prevent.stop="clickButton" class="button" :class="{ button_active: isActive }">
       {{ isActive ? isActiveText : text }}
     </button>
   </div>

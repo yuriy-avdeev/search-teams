@@ -6,8 +6,11 @@
 </template>
 
 <script>
-  import Header from './components/Header.vue'
+  import Header from '@/components/Header.vue'
+  import delayMixins from '@/mixins/delayMixins'
+
   export default {
+    mixins: [delayMixins],
     components: { Header },
 
     data() {
@@ -18,11 +21,11 @@
 
     mounted() {
       this.checkWindowWidth()
-      window.addEventListener('resize', this.checkWindowWidth)
+      window.addEventListener('resize', this.handleResize)
     },
 
     beforeDestroy() {
-      window.removeEventListener('resize', this.checkWindowWidth)
+      window.removeEventListener('resize', this.handleResize)
     },
 
     methods: {
@@ -34,6 +37,12 @@
           this.laptopScreen = true
           this.$store.commit('handleChangingScreen', this.laptopScreen)
         }
+      },
+    },
+
+    computed: {
+      handleResize() {
+        return this.debounce(this.checkWindowWidth, 100)
       },
     },
   }

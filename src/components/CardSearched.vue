@@ -1,7 +1,13 @@
 <template>
-  <div class="card" :class="{ card_active: isFocus }" @mouseover="$emit('mouseOver')" @mouseleave="$emit('mouseLeave')">
+  <div
+    class="card"
+    :class="{ card_active: isFocus }"
+    @mouseover="handleDelayMouseOver"
+    @mouseleave="handleDelayMouseLeave"
+    @click="$router.push(`/search-teams/team/${card.id}`)"
+  >
     <div class="card__box-logo" :class="{ 'card__box-logo_active': isFocus }">
-      <img class="card__logo" :src="defaultTeamLogo" alt="Team's logo" />
+      <img class="card__logo" src="@/assets/images/team-placeholder.png" alt="Team's logo" />
     </div>
 
     <div class="card__box-info">
@@ -11,11 +17,13 @@
           {{ card.leagues.length !== idx + 1 ? ', ' : '' }}&nbsp;
         </p>
       </div>
+
       <div class="card__box-team">
         <h3 class="card__team-name">
           <UiText :text="card.name" :inputValue="inputValue" />
         </h3>
         <div class="card__team-border"></div>
+
         <div class="card__box-stadium">
           <img class="card__logo-stadium" src="@/assets/images/stadium.svg" alt="Image of stadium" />
           <p class="card__team-stadium">
@@ -29,13 +37,14 @@
 </template>
 
 <script>
-  import defaultTeamLogo from '../assets/images/team-placeholder.png'
   import UiButton from '@/components/UI/UiButton.vue'
   import UiText from '@/components/UI/UiText.vue'
+  import delayMixins from '@/mixins/delayMixins'
   import { mapActions } from 'vuex'
 
   export default {
     emits: ['updateFollowing'],
+    mixins: [delayMixins],
     components: { UiButton, UiText },
     props: {
       card: Object,
@@ -44,11 +53,15 @@
       inputValue: String,
     },
 
-    data() {
-      return { defaultTeamLogo }
-    },
-
     methods: {
+      mouseOver() {
+        this.$emit('mouseOver')
+      },
+
+      mouseLeave() {
+        this.$emit('mouseLeave')
+      },
+
       async clickButton() {
         const updatedCard = { ...this.card, is_following: !this.card.is_following }
         try {
@@ -66,6 +79,14 @@
       isFocus() {
         return this.focusNumber === this.index
       },
+
+      handleDelayMouseOver() {
+        return this.debounce(this.mouseOver, 100)
+      },
+
+      handleDelayMouseLeave() {
+        return this.debounce(this.mouseLeave, 100)
+      },
     },
   }
 </script>
@@ -78,9 +99,9 @@
     background-color: $white;
     display: flex;
     align-items: center;
+    cursor: pointer;
     &_active {
       background-color: $backgroundColorBody;
-      cursor: pointer;
     }
 
     &__box-logo {

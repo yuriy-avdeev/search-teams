@@ -5,7 +5,7 @@
       :class="{ input__border: !validInput }"
       v-model="inputValue"
       ref="inputField"
-      @input="handleInput"
+      @input="handleDelayInput"
       @keydown="handleFocus"
     />
     <img class="input__close" @click="clearInput" src="@/assets/images/close.svg" alt="Close icon" />
@@ -14,7 +14,10 @@
 </template>
 
 <script>
+  import delayMixins from '@/mixins/delayMixins'
+
   export default {
+    mixins: [delayMixins],
     emits: ['input', 'handleFocus'],
 
     props: {
@@ -50,6 +53,10 @@
       validInput() {
         const regex = /^[a-zA-Z0-9]*$/g
         return regex.test(this.inputValue)
+      },
+
+      handleDelayInput() {
+        return this.debounce(this.handleInput, 500)
       },
     },
   }
