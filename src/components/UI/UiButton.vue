@@ -12,10 +12,12 @@
     
     props: {
       isActive: Boolean,
+
       text: {
         type: String,
         default: 'FOLLOW',
       },
+      
       isActiveText: {
         type: String,
         default: 'FOLLOWING',

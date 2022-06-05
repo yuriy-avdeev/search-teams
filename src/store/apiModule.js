@@ -73,6 +73,6 @@ export default {
     myTeamsList: (getters) => {
       return getters.teamsList.filter(team => team.is_following)
     },
-    isLoading: (state) => state.isPostsLoading,
+    isLoading: (state) => state.isLoading,
   }
 }

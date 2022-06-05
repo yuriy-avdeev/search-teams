@@ -32,11 +32,10 @@
       checkWindowWidth() {
         if (window.innerWidth < 1024 && this.laptopScreen === true) {
           this.laptopScreen = false
-          this.$store.commit('handleChangingScreen', this.laptopScreen)
         } else if (window.innerWidth >= 1024 && this.laptopScreen === false) {
           this.laptopScreen = true
-          this.$store.commit('handleChangingScreen', this.laptopScreen)
         }
+        this.$store.commit('handleChangingScreen', this.laptopScreen)
       },
     },
 

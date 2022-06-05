@@ -12,7 +12,7 @@
     flex-direction: column;
     align-items: center;
     width: 90%;
-    max-width: 600px;
+    max-width: $mainMaxWidth;
     margin: auto;
     @include fontProperty(_, 24px, 600, 1, _);
     color: darkred;
@@ -29,7 +29,6 @@
       text-decoration: none;
       font-style: italic;
       color: $blue;
-
       &:hover {
         @include hover(0.8, 0.3s);
       }

@@ -12,8 +12,8 @@
     <ui-user-name v-if="!isLaptopScreen">{{ userData.name }}</ui-user-name>
     <div class="header__notes-box">
       <img class="header__notes-bell" src="@/assets/images/notification.svg" alt="Notification bell" />
-      <div class="header__notes-label">
-        <p class="header__notes-text">{{ $store.getters.messagesNumber }}</p>
+      <div v-if="$store.getters.messagesNumber" class="header__notes-label">
+        {{ $store.getters.messagesNumber }}
       </div>
     </div>
   </div>
@@ -42,7 +42,7 @@
     },
 
     computed: {
-      ...mapGetters(['isLaptopScreen', 'userData' ]),
+      ...mapGetters(['isLaptopScreen', 'userData']),
     },
   }
 </script>
@@ -77,30 +77,29 @@
       position: relative;
       width: 42px;
       height: 20px;
-      cursor: pointer;
       display: flex;
       justify-content: flex-end;
     }
 
+    &__notes-bell {
+      cursor: pointer;
+    }
+
     &__notes-label {
-      box-sizing: content-box;
-      height: 14px;
-      min-width: 14px;
-      max-width: fit-content;
+      border-radius: 50%;
+      border: 2px solid $backgroundColorHeader;
       position: absolute;
       right: -8px;
       bottom: -7px;
-      border: 2px solid $backgroundColorHeader;
-      border-radius: 50%;
+      height: 18px;
+      min-width: 18px;
+      max-width: fit-content;
       background-color: $blue;
       display: flex;
       align-items: center;
       justify-content: center;
-    }
-
-    &__notes-text {
-      @include fontProperty('Montserrat', 10px, 600, 1, italic);
-      margin: 0 2px;
+      @include fontProperty('Montserrat', 10px, 600, 1, _);
+      cursor: pointer;
     }
   }
 

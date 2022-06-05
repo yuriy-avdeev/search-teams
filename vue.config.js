@@ -2,7 +2,7 @@ module.exports = {
   css: {
     loaderOptions: {
       scss: {
-        prependData: `@import '@/assets/scss/_variables.scss';`
+        additionalData: `@import '@/assets/scss/_variables.scss';`
       }
     }
   },
@@ -12,4 +12,3 @@ module.exports = {
     ? '/search-teams/'
     : '/'
 }
-
