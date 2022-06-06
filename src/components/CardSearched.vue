@@ -39,12 +39,12 @@
 <script>
   import UiButton from '@/components/UI/UiButton.vue'
   import UiText from '@/components/UI/UiText.vue'
-  import delayMixins from '@/mixins/delayMixins'
+  import {delayMixin} from '@/mixins/mixins'
   import { mapActions } from 'vuex'
 
   export default {
     emits: ['updateFollowing'],
-    mixins: [delayMixins],
+    mixins: [delayMixin],
     components: { UiButton, UiText },
     props: {
       card: Object,

@@ -7,10 +7,10 @@
 
 <script>
   import Header from '@/components/Header.vue'
-  import delayMixins from '@/mixins/delayMixins'
+  import {delayMixin} from '@/mixins/mixins'
 
   export default {
-    mixins: [delayMixins],
+    mixins: [delayMixin],
     components: { Header },
 
     data() {
@@ -21,11 +21,11 @@
 
     mounted() {
       this.checkWindowWidth()
-      window.addEventListener('resize', this.handleResize)
+      // window.addEventListener('resize', this.handleResize)
     },
 
     beforeDestroy() {
-      window.removeEventListener('resize', this.handleResize)
+      // window.removeEventListener('resize', this.handleResize)
     },
 
     methods: {
@@ -39,11 +39,11 @@
       },
     },
 
-    computed: {
-      handleResize() {
-        return this.debounce(this.checkWindowWidth, 100)
-      },
-    },
+    // computed: {
+    //   handleResize() {
+    //     return this.debounce(this.checkWindowWidth, 100)
+    //   },
+    // },
   }
 </script>
 

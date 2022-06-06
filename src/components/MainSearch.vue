@@ -64,6 +64,7 @@
       },
 
       checkForMatches(string, inputValue) {
+        // todo: combine (mixin) logic with UiText -> return segment.toLowerCase() === inputValue.toLowerCase()
         return string.toLowerCase().search(inputValue.toLowerCase())
       },
 
@@ -74,7 +75,6 @@
 
         if (inputValue.length) {
           this.teamsList.forEach((card) => {
-            // todo: try to combine logic with UiText (computed) <- ... here toLowerCase()
             let checkedName = this.checkForMatches(card.name, inputValue)
             let checkedStadium = this.checkForMatches(card.stadium, inputValue)
             let hasStadium = false

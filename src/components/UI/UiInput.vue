@@ -14,10 +14,10 @@
 </template>
 
 <script>
-  import delayMixins from '@/mixins/delayMixins'
+  import { delayMixin } from '@/mixins/mixins'
 
   export default {
-    mixins: [delayMixins],
+    mixins: [delayMixin],
     emits: ['input', 'handleFocus'],
 
     props: {
