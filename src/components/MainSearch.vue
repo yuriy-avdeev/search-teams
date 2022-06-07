@@ -9,18 +9,20 @@
       message="Field can only contain letters and numbers"
     />
 
-    <CardSearched
-      v-for="(card, idx) in filteredList"
-      :key="card.id"
-      :card="card"
-      :index="idx"
-      :focusNumber="focusNumber"
-      :inputValue="inputValue"
-      @updateFollowing="updateFollowingCard"
-      @mouseOver="focusNumber = idx"
-      @mouseLeave="focusNumber = focusNumber"
-    />
-    <!-- // :ref="`card${card.id}`" => $refs[`card${card.id}`] // m.b. for focus -->
+    <transition-group name="bounce">
+      <CardSearched
+        v-for="(card, idx) in filteredList"
+        :key="card.id"
+        :card="card"
+        :index="idx"
+        :focusNumber="focusNumber"
+        :inputValue="inputValue"
+        @updateFollowing="updateFollowingCard"
+        @mouseOver="focusNumber = idx"
+        @mouseLeave="focusNumber = focusNumber"
+      />
+      <!-- // :ref="`card${card.id}`" => $refs[`card${card.id}`] // m.b. for focus -->
+    </transition-group>
 
     <div v-if="inputValue && !filteredList.length" class="search__no-results-box">
       <img class="search__no-results-image" src="@/assets/images/no-results.svg" alt="No results" />
@@ -91,6 +93,24 @@
 </script>
 
 <style lang="scss" scoped>
+  .bounce-enter-active {
+    animation: bounce-in 0.5s;
+  }
+  .bounce-leave-active {
+    animation: bounce-in 0.5s reverse;
+  }
+  @keyframes bounce-in {
+    0% {
+      transform: scale(0);
+    }
+    60% {
+      transform: scale(1.15);
+    }
+    100% {
+      transform: scale(1);
+    }
+  }
+
   .search {
     width: $fullWidth;
     border-top: 8px solid $backgroundColorMain;
