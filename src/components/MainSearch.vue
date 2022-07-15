@@ -10,18 +10,18 @@
     />
 
     <transition-group name="bounce">
-      <CardSearched
-        v-for="(card, idx) in filteredList"
-        :key="card.id"
-        :card="card"
-        :index="idx"
-        :focusNumber="focusNumber"
-        :inputValue="inputValue"
-        @updateFollowing="updateFollowingCard"
-        @mouseOver="focusNumber = idx"
-        @mouseLeave="focusNumber = focusNumber"
-      />
-      <!-- // :ref="`card${card.id}`" => $refs[`card${card.id}`] // m.b. for focus -->
+    <CardSearched
+      v-for="(card, idx) in filteredList"
+      :key="card.id"
+      :card="card"
+      :index="idx"
+      :focusNumber="focusNumber"
+      :inputValue="inputValue"
+      @updateFollowing="updateFollowingCard"
+      @mouseOver="focusNumber = idx"
+      @mouseLeave="focusNumber = focusNumber"
+    />
+    <!-- // :ref="`card${card.id}`" => $refs[`card${card.id}`] // m.b. for focus -->
     </transition-group>
 
     <div v-if="inputValue && !filteredList.length" class="search__no-results-box">
