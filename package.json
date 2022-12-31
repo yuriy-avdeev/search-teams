@@ -19,15 +19,15 @@
     "vuex": "^3.4.0"
   },
   "devDependencies": {
-    "@vue/cli-plugin-babel": "~4.5.15",
+    "@vue/cli-plugin-babel": "~5.0.8",
     "@vue/cli-plugin-router": "~4.5.15",
     "@vue/cli-plugin-vuex": "~4.5.15",
-    "@vue/cli-service": "~4.5.15",
+    "@vue/cli-service": "~5.0.8",
     "gh-pages": "^4.0.0",
     "node-sass": "^6.0.1",
     "sass-loader": "^10.2.1",
     "vue-template-compiler": "^2.6.11",
-    "webpack": "^4.0.0"
+    "webpack": "^5.75.0"
   },
   "browserslist": [
     "> 1%",
